@@ -4,12 +4,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
-DEVICE_PACKAGE_OVERLAYS := device/zte/mooncake/overlay
+DEVICE_PACKAGE_OVERLAYS := device/zte/mooncakec/overlay
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := zte_mooncake
-PRODUCT_DEVICE := mooncake
-PRODUCT_MODEL := Racer
+PRODUCT_NAME := zte_mooncakec
+PRODUCT_DEVICE := mooncakec
+PRODUCT_MODEL := Carl
 PRODUCT_MANUFACTURER := ZTE
 
 PRODUCT_PACKAGES += \
@@ -34,48 +34,37 @@ PRODUCT_PACKAGES += \
     RacerParts \
     dexpreopt
 
-include device/zte/mooncake/BoardConfig.mk
-
 # proprietary side of the device
-$(call inherit-product-if-exists, vendor/zte/mooncake/mooncake-vendor.mk)
+$(call inherit-product-if-exists, vendor/zte/mooncakec/mooncakec-vendor.mk)
 
 DISABLE_DEXPREOPT := false
 
 # Keypad
 PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/usr/keylayout/mooncake-keypad.kl:system/usr/keylayout/mooncake-keypad.kl
+    device/zte/mooncakec/prebuilt/usr/keylayout/mooncake-keypad.kl:system/usr/keylayout/mooncake-keypad.kl
 
 # Vold
 PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/etc/vold.fstab:system/etc/vold.fstab
+    device/zte/mooncakec/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
 # Init
-ifeq ($(SENSORS_COMPASS_AK8973),true)
 PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/init.mooncake.rc:root/init.mooncake.rc
-else
-ifeq ($(SENSORS_COMPASS_AK8962),true)
-PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/init.mooncakec.rc:root/init.mooncake.rc
-endif # SENSORS_COMPASS_AK8962
-endif # SENSORS_COMPASS_AK8973
-
-PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/ueventd.mooncake.rc:root/ueventd.mooncake.rc
+    device/zte/mooncakec/prebuilt/init.mooncakec.rc:root/init.mooncakec.rc\
+    device/zte/mooncakec/prebuilt/ueventd.mooncakec.rc:root/ueventd.mooncakec.rc
 
 # Audio + Media profiles
 PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/zte/mooncake/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-    device/zte/mooncake/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
+    device/zte/mooncakec/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
+    device/zte/mooncakec/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
+    device/zte/mooncakec/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
 
 # WLAN + BT
 PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/etc/init.bt.sh:system/etc/init.bt.sh \
-    device/zte/mooncake/prebuilt/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-    device/zte/mooncake/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/zte/mooncake/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-    device/zte/mooncake/prebuilt/etc/dhcpd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
+    device/zte/mooncakec/prebuilt/etc/init.bt.sh:system/etc/init.bt.sh \
+    device/zte/mooncakec/prebuilt/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    device/zte/mooncakec/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/zte/mooncakec/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+    device/zte/mooncakec/prebuilt/etc/dhcpd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
@@ -90,14 +79,14 @@ PRODUCT_COPY_FILES += \
 
 # WiFi firmware
 PRODUCT_COPY_FILES += \
-    device/zte/mooncake/prebuilt/wifi/ar6000.ko:system/wifi/ar6000.ko \
-    device/zte/mooncake/prebuilt/wifi/regcode:system/wifi/regcode \
-    device/zte/mooncake/prebuilt/wifi/data.patch.hw2_0.bin:system/wifi/data.patch.hw2_0.bin \
-    device/zte/mooncake/prebuilt/wifi/athwlan.bin.z77:system/wifi/athwlan.bin.z77 \
-    device/zte/mooncake/prebuilt/wifi/athtcmd_ram.bin:system/wifi/athtcmd_ram.bin \
-    device/zte/mooncake/prebuilt/wifi/device.bin:system/wifi/device.bin \
-    device/zte/mooncake/prebuilt/wifi/eeprom.bin:system/wifi/eeprom.bin \
-    device/zte/mooncake/prebuilt/wifi/eeprom.data:system/wifi/eeprom.data
+    device/zte/mooncakec/prebuilt/wifi/ar6000.ko:system/wifi/ar6000.ko \
+    device/zte/mooncakec/prebuilt/wifi/regcode:system/wifi/regcode \
+    device/zte/mooncakec/prebuilt/wifi/data.patch.hw2_0.bin:system/wifi/data.patch.hw2_0.bin \
+    device/zte/mooncakec/prebuilt/wifi/athwlan.bin.z77:system/wifi/athwlan.bin.z77 \
+    device/zte/mooncakec/prebuilt/wifi/athtcmd_ram.bin:system/wifi/athtcmd_ram.bin \
+    device/zte/mooncakec/prebuilt/wifi/device.bin:system/wifi/device.bin \
+    device/zte/mooncakec/prebuilt/wifi/eeprom.bin:system/wifi/eeprom.bin \
+    device/zte/mooncakec/prebuilt/wifi/eeprom.data:system/wifi/eeprom.data
 
 # Mooncake uses low and medium-density artwork where available
 PRODUCT_LOCALES += ldpi mdpi

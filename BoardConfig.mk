@@ -32,7 +32,7 @@ ENABLE_JSC_JIT := true
 JS_ENGINE := v8
 
 TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
-BOARD_EGL_CFG := device/zte/mooncake/prebuilt/lib/egl/egl.cfg
+BOARD_EGL_CFG := device/zte/mooncakec/prebuilt/lib/egl/egl.cfg
 
 BOARD_GPS_LIBRARIES := libloc_api
 
@@ -46,21 +46,12 @@ BOARD_GPS_NEEDS_XTRA := true
 TARGET_PROVIDES_LIBRIL := true
 TARGET_PROVIDES_LIBAUDIO := true
 
-BOARD_CUSTOM_USB_CONTROLLER := ../../device/zte/mooncake/UsbController.cpp
+BOARD_CUSTOM_USB_CONTROLLER := ../../device/zte/mooncakec/UsbController.cpp
 
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
-SENSORS_COMPASS_AK8973 := true
-SENSORS_COMPASS_AK8962 := false
-
 TARGET_KERNEL_SOURCE := kernel/zte/msm7x27
-ifeq ($(SENSORS_COMPASS_AK8973),true)
-TARGET_KERNEL_CONFIG := cyanogen_mooncake_defconfig
-else
-ifeq ($(SENSORS_COMPASS_AK8962),true)
 TARGET_KERNEL_CONFIG := cyanogen_mooncakec_defconfig
-endif # SENSORS_COMPASS_AK8962
-endif # SENSORS_COMPASS_AK8973
 
 BOARD_KERNEL_BASE := 0x02600000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=mooncake console=null
@@ -84,6 +75,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0a280000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 BOARD_LDPI_RECOVERY := true
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/mooncake/recovery/recovery_kernel
-BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/zte/mooncake/recovery/recovery_ui.c
-TARGET_RECOVERY_INITRC := device/zte/mooncake/recovery/recovery.rc
+TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/mooncakec/recovery/recovery_kernel
+BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/zte/mooncakec/recovery/recovery_ui.c
+TARGET_RECOVERY_INITRC := device/zte/mooncakec/recovery/recovery.rc
