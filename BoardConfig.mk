@@ -5,7 +5,7 @@ LOCAL_PATH:= $(call my-dir)
 USE_CAMERA_STUB := true
 
 # Use the non-open-source parts, if they're present
--include vendor/zte/mooncake/BoardConfigVendor.mk
+-include vendor/zte/mooncakec/BoardConfigVendor.mk
 
 # CPU
 TARGET_CPU_ABI := armeabi-v6l
