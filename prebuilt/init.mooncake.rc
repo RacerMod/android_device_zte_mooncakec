@@ -7,11 +7,6 @@ on property:dev.bootcomplete=1
 
 on boot
 
-# cpufreq configurations
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 500000
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
-    write /sys/devices/system/cpu/cpufreq/ondemand/down_threshold 30
-
 # Setup charging
     chown system system /sys/module/msm_battery/parameters/usb_chg_enable
 
@@ -36,7 +31,7 @@ on boot
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
 # Setup android gadget
-    write /sys/module/g_android/parameters/serial_number CM7-Racer
+    write /sys/module/g_android/parameters/serial_number CM7-Carl
     write /sys/module/g_android/parameters/product_id 0x1351
 
 # Create the directories used by the Wireless subsystem
@@ -56,6 +51,7 @@ on boot
     chmod 0777 /data/local/tmp
     chown radio shell /data/local/tmp
 
+# Setup accelerometer
     chmod 0777 /dev/akm8962_aot
     chmod 0777 /dev/akm8962_dev
 
@@ -124,10 +120,6 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dawext -iwlan0 -W -c/data/mis
 service dhcpcd_wlan0 /system/bin/dhcpcd -BKL
     disabled
     oneshot
-
-#service wlan_tool /system/bin/wlan_tool
-#        disabled
-#        oneshot
 
 service abtfilt /system/bin/abtfilt -c -d -z -n
     disabled
