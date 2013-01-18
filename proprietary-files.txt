@@ -1,1 +1,2 @@
-bin/akmd8962
+# Accelerometer
+system/bin/akmd8962
